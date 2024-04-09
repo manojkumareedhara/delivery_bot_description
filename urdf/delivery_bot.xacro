@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<robot name="delivery_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find delivery_bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find delivery_bot_description)/urdf/delivery_bot.trans" />
+<xacro:include filename="$(find delivery_bot_description)/urdf/delivery_bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="1.2772647548322993e-05 -0.0078067399534786875 0.1470559303282844" rpy="0 0 0"/>
+    <mass value="78.12379262241626"/>
+    <inertia ixx="2.113641" iyy="6.269602" izz="7.347742" ixy="-0.000212" iyz="-0.040148" ixz="0.000119"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="0.025000000000000078 5.551115123125783e-17 2.1940782524154656e-14" rpy="0 0 0"/>
+    <mass value="5.888027134307574"/>
+    <inertia ixx="0.014648" iyy="0.008551" izz="0.008551" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.43 0.1 -0.07" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.43 0.1 -0.07" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-0.025000000000000078 5.551115123125783e-17 2.1940782524154656e-14" rpy="0 0 0"/>
+    <mass value="5.888027134307574"/>
+    <inertia ixx="0.014648" iyy="0.008551" izz="0.008551" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.43 0.1 -0.07" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.43 0.1 -0.07" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-2.3160092400488117e-17 1.1580046200244058e-17 0.04999999999999999" rpy="0 0 0"/>
+    <mass value="24.661502330679873"/>
+    <inertia ixx="0.082205" iyy="0.082205" izz="0.123308" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.28" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.28" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://delivery_bot_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.43 -0.1 0.07" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="-0.43 -0.1 0.07" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+</joint>
+
+<joint name="Rigid 3" type="fixed">
+  <origin xyz="0.0 0.0 0.28" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>
