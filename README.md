@@ -24,7 +24,8 @@ Git (for version control)
 ## Setup and Installation
 
 Clone the repository:
-Copygit clone https://github.com/yourusername/deliveri-bot.git
+git clone "https://github.com/manojkumareedhara/delivery_bot_description.git"
+
 cd deliveri-bot
 
 Install dependencies:
